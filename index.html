@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Program DIGDAYA - D3 TI UNIMMA x Pemkab Magelang</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        unimma: {
+                            blue: '#003B73',
+                            light: '#005b9f',
+                            accent: '#F2A900' // Gold/Yellow
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .fade-in.appear {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .hero-bg {
+            background: linear-gradient(rgba(0, 59, 115, 0.88), rgba(0, 59, 115, 0.98)), url('https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 font-sans text-slate-800 antialiased selection:bg-unimma-accent selection:text-white">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 bg-white/95 backdrop-blur-sm shadow-sm transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex items-center gap-2 sm:gap-4">
+                    <div class="flex items-center gap-2 sm:gap-3">
+                        <!-- University Logo -->
+                        <img src="https://lh3.googleusercontent.com/d/1oVQNT3iWSVCw9YOjMqNgYiXXzUoNCRck" 
+                             alt="Logo UNIMMA" 
+                             class="h-10 sm:h-12 w-auto object-contain">
+                        
+                        <div class="w-px h-8 bg-slate-200 hidden sm:block"></div>
+
+                        <!-- Prodi Logo -->
+                        <img src="https://lh3.googleusercontent.com/d/1zzEmoTmvTPSDHDCe7HU96TPfsZK2Bjqd" 
+                             alt="Logo D3 TI UNIMMA" 
+                             class="h-10 sm:h-12 w-auto object-contain">
+                    </div>
+                    
+                    <div class="hidden xs:block border-l border-slate-200 pl-3 ml-1">
+                        <h1 class="font-bold text-unimma-blue leading-tight text-base">DIGDAYA</h1>
+                        <p class="text-[10px] text-slate-500 font-semibold tracking-wider uppercase">Program Unggulan D3 TI</p>
+                    </div>
+                </div>
+                <div class="hidden lg:flex space-x-8">
+                    <a href="#tantangan" class="text-sm font-semibold text-slate-600 hover:text-unimma-accent transition-colors">Tantangan</a>
+                    <a href="#solusi" class="text-sm font-semibold text-slate-600 hover:text-unimma-accent transition-colors">Sistem DIGDAYA</a>
+                    <a href="#profil" class="text-sm font-semibold text-slate-600 hover:text-unimma-accent transition-colors">Profil Lulusan</a>
+                    <a href="#roi" class="text-sm font-semibold text-slate-600 hover:text-unimma-accent transition-colors">Analisis ROI</a>
+                </div>
+                <div class="flex items-center">
+                    <a href="#kontak" class="bg-unimma-accent hover:bg-yellow-500 text-white px-4 sm:px-6 py-2 rounded-full font-bold text-sm transition-all transform hover:scale-105 shadow-lg flex items-center gap-2">
+                        <i data-lucide="award" class="w-4 h-4 sm:w-5 sm:h-5"></i> <span>Gabung DIGDAYA</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="beranda" class="hero-bg min-h-screen flex items-center pt-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center md:text-left">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="fade-in">
+                    <span class="inline-block py-1 px-4 rounded-full bg-unimma-accent text-unimma-blue font-bold text-xs mb-6 uppercase tracking-widest shadow-lg">
+                        Digitalisasi Desa dan Daerah Berkarya
+                    </span>
+                    <h2 class="text-5xl md:text-6xl lg:text-7xl font-black text-white leading-tight mb-6 uppercase tracking-tighter">
+                        PROGRAM <span class="text-unimma-accent">DIGDAYA</span>
+                    </h2>
+                    <h3 class="text-2xl md:text-3xl font-semibold text-white/90 mb-6 italic">
+                        "Kedaulatan Digital dari Putra Daerah."
+                    </h3>
+                    <p class="text-lg md:text-xl text-slate-300 mb-8 max-w-2xl font-light leading-relaxed">
+                        Inisiatif strategis Universitas Muhammadiyah Magelang dalam mencetak SDM IT mandiri untuk mengakselerasi tata kelola teknologi di seluruh OPD dan Desa Kabupaten Magelang.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+                        <a href="#solusi" class="bg-unimma-accent hover:bg-yellow-500 text-white px-8 py-4 rounded-full font-bold text-lg transition-all shadow-xl flex items-center justify-center gap-2 uppercase tracking-wide">
+                            Implementasi Program <i data-lucide="chevron-right" class="w-5 h-5"></i>
+                        </a>
+                        <a href="#roi" class="bg-white/10 hover:bg-white/20 backdrop-blur-md text-white border border-white/30 px-8 py-4 rounded-full font-bold text-lg transition-all flex items-center justify-center gap-2">
+                            Analisis Dampak
+                        </a>
+                    </div>
+                </div>
+                <div class="hidden md:block fade-in">
+                    <div class="bg-white/5 backdrop-blur-sm p-8 rounded-3xl border border-white/10 shadow-2xl">
+                        <div class="space-y-6">
+                            <div class="flex items-center gap-4 border-b border-white/10 pb-4">
+                                <div class="w-12 h-12 bg-unimma-accent rounded-xl flex items-center justify-center text-unimma-blue font-black text-xl">01</div>
+                                <div>
+                                    <h4 class="text-white font-bold">Kemandirian Teknologi</h4>
+                                    <p class="text-slate-400 text-xs">Daerah mengelola infrastruktur IT secara mandiri.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-4 border-b border-white/10 pb-4">
+                                <div class="w-12 h-12 bg-unimma-accent rounded-xl flex items-center justify-center text-unimma-blue font-black text-xl">02</div>
+                                <div>
+                                    <h4 class="text-white font-bold">SDM Putra Daerah</h4>
+                                    <p class="text-slate-400 text-xs">Memberdayakan warga lokal menjadi tenaga ahli profesional.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-4">
+                                <div class="w-12 h-12 bg-unimma-accent rounded-xl flex items-center justify-center text-unimma-blue font-black text-xl">03</div>
+                                <div>
+                                    <h4 class="text-white font-bold">Keberlanjutan Sistem</h4>
+                                    <p class="text-slate-400 text-xs">Produk IT yang adaptif dengan kebutuhan instansi asal.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tantangan Section -->
+    <section id="tantangan" class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-20 fade-in">
+                <h2 class="text-unimma-blue font-bold tracking-widest uppercase text-xs mb-3">Tantangan Strategis</h2>
+                <h3 class="text-3xl md:text-5xl font-black text-slate-900 mb-6 leading-tight">Urgensi Kedaulatan Digital di Magelang</h3>
+                <p class="text-slate-500 text-lg italic">"Program DIGDAYA hadir sebagai jawaban atas tantangan transformasi birokrasi masa depan."</p>
+                <div class="w-24 h-1.5 bg-unimma-accent mx-auto rounded-full mt-8"></div>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="group bg-slate-50 rounded-3xl p-10 border border-slate-100 hover:bg-unimma-blue transition-all duration-500 fade-in">
+                    <div class="w-16 h-16 bg-red-100 rounded-2xl flex items-center justify-center text-red-600 mb-8 group-hover:bg-white/10 group-hover:text-white transition-all">
+                        <i data-lucide="activity" class="w-8 h-8"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-slate-900 mb-4 group-hover:text-white">Efisiensi Jangka Panjang</h4>
+                    <p class="text-slate-600 text-sm leading-relaxed group-hover:text-slate-300">Mengurangi beban operasional daerah melalui pemeliharaan sistem yang dikelola secara internal oleh staf kompeten.</p>
+                </div>
+                <div class="group bg-slate-50 rounded-3xl p-10 border border-slate-100 hover:bg-unimma-blue transition-all duration-500 fade-in" style="transition-delay: 100ms;">
+                    <div class="w-16 h-16 bg-orange-100 rounded-2xl flex items-center justify-center text-orange-600 mb-8 group-hover:bg-white/10 group-hover:text-white transition-all">
+                        <i data-lucide="lock" class="w-8 h-8"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-slate-900 mb-4 group-hover:text-white">Kedaulatan Data</h4>
+                    <p class="text-slate-600 text-sm leading-relaxed group-hover:text-slate-300">Menjamin perlindungan privasi data warga melalui pengawasan tenaga teknis yang mendedikasikan diri sepenuhnya pada instansi.</p>
+                </div>
+                <div class="group bg-slate-50 rounded-3xl p-10 border border-slate-100 hover:bg-unimma-blue transition-all duration-500 fade-in" style="transition-delay: 200ms;">
+                    <div class="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center text-unimma-blue mb-8 group-hover:bg-white/10 group-hover:text-white transition-all">
+                        <i data-lucide="hard-hat" class="w-8 h-8"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-slate-900 mb-4 group-hover:text-white">Pemenuhan Tenaga Ahli</h4>
+                    <p class="text-slate-600 text-sm leading-relaxed group-hover:text-slate-300">Solusi alternatif dalam mengisi celah kebutuhan Pranata Komputer di tengah terbatasnya formasi ASN teknis.</p>
+                </div>
+                <div class="group bg-slate-50 rounded-3xl p-10 border border-slate-100 hover:bg-unimma-blue transition-all duration-500 fade-in" style="transition-delay: 300ms;">
+                    <div class="w-16 h-16 bg-green-100 rounded-2xl flex items-center justify-center text-green-600 mb-8 group-hover:bg-white/10 group-hover:text-white transition-all">
+                        <i data-lucide="trending-up" class="w-8 h-8"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-slate-900 mb-4 group-hover:text-white">Daya Saing Lokal</h4>
+                    <p class="text-slate-600 text-sm leading-relaxed group-hover:text-slate-300">Meningkatkan standar visual dan promosi digital potensi daerah melalui keahlian multimedia profesional.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Solusi Section (DIGDAYA 20-30-50) -->
+    <section id="solusi" class="py-24 bg-unimma-blue text-white overflow-hidden relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center max-w-3xl mx-auto mb-20 fade-in">
+                <h2 class="text-unimma-accent font-bold tracking-widest uppercase text-xs mb-3">Arsitektur Program</h2>
+                <h3 class="text-3xl md:text-5xl font-black mb-6">Metode Implementasi DIGDAYA</h3>
+                <p class="text-slate-300 text-lg">Model Pendidikan Vokasi Masa Depan: 20% Teori, 30% Praktik, 50% Pengabdian.</p>
+            </div>
+
+            <div class="grid lg:grid-cols-3 gap-8 items-center">
+                <div class="space-y-8">
+                    <div class="bg-white/5 border border-white/10 p-8 rounded-3xl hover:bg-white/10 transition-all fade-in">
+                        <span class="text-4xl font-black text-unimma-accent block mb-4">20%</span>
+                        <h4 class="text-xl font-bold mb-2">Pengetahuan Dasar</h4>
+                        <p class="text-slate-400 text-sm leading-relaxed">Pembekalan konsep algoritma, etika birokrasi digital, dan tata kelola SPBE di lingkungan kampus UNIMMA.</p>
+                    </div>
+                    <div class="bg-white/5 border border-white/10 p-8 rounded-3xl hover:bg-white/10 transition-all fade-in" style="transition-delay: 100ms;">
+                        <span class="text-4xl font-black text-unimma-accent block mb-4">30%</span>
+                        <h4 class="text-xl font-bold mb-2">Simulasi Fungsional</h4>
+                        <p class="text-slate-400 text-sm leading-relaxed">Penguasaan instrumen teknologi melalui praktik laboratorium intensif (Jaringan, Keamanan, Multimedia).</p>
+                    </div>
+                </div>
+                <div class="bg-gradient-to-br from-unimma-accent to-yellow-600 p-1 rounded-3xl shadow-3xl fade-in" style="transition-delay: 200ms;">
+                    <div class="bg-unimma-blue/20 backdrop-blur-sm rounded-[1.4rem] p-10 h-full flex flex-col justify-center items-center text-center">
+                        <div class="w-20 h-20 bg-white rounded-2xl flex items-center justify-center mb-8 shadow-xl">
+                            <i data-lucide="rocket" class="w-10 h-10 text-unimma-blue"></i>
+                        </div>
+                        <span class="text-6xl font-black text-white mb-2">50%</span>
+                        <h4 class="text-2xl font-bold text-white mb-6 uppercase tracking-wider">EKSEKUSI LAPANGAN</h4>
+                        <p class="text-white/80 text-sm mb-8 leading-relaxed italic">
+                            "Mahasiswa bertugas penuh waktu di OPD/Desa asal selama 1,5 tahun untuk membangun solusi IT yang adaptif dan berkelanjutan."
+                        </p>
+                        <ul class="text-left text-sm space-y-3">
+                            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4"></i> Analisis Masalah Real</li>
+                            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4"></i> Pembangunan Sistem In-House</li>
+                            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4"></i> Serah Terima Portofolio Akhir</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="space-y-8">
+                    <div class="p-8 border border-white/10 rounded-3xl bg-white/5 fade-in" style="transition-delay: 300ms;">
+                        <h4 class="text-unimma-accent font-bold mb-4 uppercase text-xs tracking-widest">Keluaran Program</h4>
+                        <div class="space-y-4">
+                            <div class="flex gap-4">
+                                <div class="w-8 h-8 rounded bg-unimma-accent/20 flex items-center justify-center shrink-0">
+                                    <i data-lucide="shield-check" class="w-4 h-4 text-unimma-accent"></i>
+                                </div>
+                                <p class="text-xs text-slate-300">Sertifikasi Kompetensi BNSP sebagai jaminan mutu tenaga ahli.</p>
+                            </div>
+                            <div class="flex gap-4">
+                                <div class="w-8 h-8 rounded bg-unimma-accent/20 flex items-center justify-center shrink-0">
+                                    <i data-lucide="code" class="w-4 h-4 text-unimma-accent"></i>
+                                </div>
+                                <p class="text-xs text-slate-300">Aset Digital (Web/Aplikasi/Jaringan) milik daerah.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ROI & Analisis Section -->
+    <section id="roi" class="py-24 bg-white border-t border-slate-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-20 items-center">
+                <div class="fade-in">
+                    <h2 class="text-unimma-blue font-bold tracking-widest uppercase text-xs mb-3">Analisis Kemanfaatan</h2>
+                    <h3 class="text-3xl md:text-5xl font-black text-slate-900 mb-8 leading-tight">Keuntungan Strategis Investasi DIGDAYA</h3>
+                    
+                    <div class="space-y-10">
+                        <div class="flex gap-6">
+                            <div class="w-14 h-14 rounded-2xl bg-slate-900 text-unimma-accent flex items-center justify-center shrink-0 font-black text-xl shadow-lg">1</div>
+                            <div>
+                                <h4 class="text-xl font-bold text-slate-900 mb-2">Kemandirian Teknis Berkelanjutan</h4>
+                                <p class="text-slate-600 text-sm leading-relaxed">Instansi memiliki tenaga ahli yang memahami seluk-beluk infrastruktur lokal, mengurangi ketergantungan biaya pemeliharaan eksternal secara drastis.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-6">
+                            <div class="w-14 h-14 rounded-2xl bg-slate-900 text-unimma-accent flex items-center justify-center shrink-0 font-black text-xl shadow-lg">2</div>
+                            <div>
+                                <h4 class="text-xl font-bold text-slate-900 mb-2">Produk IT Siap Guna</h4>
+                                <p class="text-slate-600 text-sm leading-relaxed">Produk yang dibangun selama masa pengabdian diserahkan sepenuhnya kepada instansi, menjadi aset operasional yang meningkatkan kualitas layanan publik.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-6">
+                            <div class="w-14 h-14 rounded-2xl bg-slate-900 text-unimma-accent flex items-center justify-center shrink-0 font-black text-xl shadow-lg">3</div>
+                            <div>
+                                <h4 class="text-xl font-bold text-slate-900 mb-2">Akselerasi Indeks SPBE</h4>
+                                <p class="text-slate-600 text-sm leading-relaxed">Mendongkrak nilai evaluasi teknologi informasi daerah secara terukur melalui implementasi solusi nyata di level mikro (desa) dan makro (OPD).</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-slate-900 p-10 md:p-12 rounded-[3rem] shadow-3xl text-white fade-in" style="transition-delay: 200ms;">
+                    <div class="flex items-center gap-4 mb-8">
+                        <div class="w-12 h-12 bg-unimma-accent rounded-xl flex items-center justify-center text-slate-900">
+                            <i data-lucide="file-text" class="w-6 h-6"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold uppercase tracking-tight">Akuntabilitas & Legalitas</h3>
+                    </div>
+                    
+                    <div class="space-y-6">
+                        <div class="p-6 bg-white/5 border border-white/10 rounded-2xl">
+                            <strong class="text-unimma-accent block text-sm mb-2 uppercase tracking-wide">Dasar Hukum Desa</strong>
+                            <p class="text-slate-400 text-xs leading-relaxed">Sesuai Permendes PDTT terkait prioritas penggunaan Dana Desa untuk digitalisasi pelayanan dan penguatan kapasitas SDM masyarakat.</p>
+                        </div>
+                        <div class="p-6 bg-white/5 border border-white/10 rounded-2xl">
+                            <strong class="text-unimma-accent block text-sm mb-2 uppercase tracking-wide">Transparansi Anggaran</strong>
+                            <p class="text-slate-400 text-xs leading-relaxed">Biaya pendidikan bersifat paket tunggal (Multi-Years), memberikan kepastian perencanaan anggaran bagi instansi tanpa biaya tambahan tersembunyi.</p>
+                        </div>
+                        <div class="p-6 bg-white/5 border border-white/10 rounded-2xl">
+                            <strong class="text-unimma-accent block text-sm mb-2 uppercase tracking-wide">Jaminan Pengabdian</strong>
+                            <p class="text-slate-400 text-xs leading-relaxed">Mahasiswa terikat kontrak ikatan dinas pasca-lulus, memastikan ketersediaan tenaga ahli tetap di wilayah asal minimal selama 2 tahun.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Kontak Section -->
+    <section id="kontak" class="py-24 bg-unimma-blue text-white text-center relative overflow-hidden">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 fade-in">
+            <h2 class="text-4xl md:text-6xl font-black mb-8 leading-tight tracking-tighter">SIAP UNTUK DIGDAYA?</h2>
+            <p class="text-xl text-slate-300 mb-12 italic font-light">"Membangun Magelang dari Genggaman Putra-Putri Daerah."</p>
+            
+            <div class="grid md:grid-cols-3 gap-8 text-left mb-16">
+                <div class="bg-white/5 p-8 rounded-3xl border border-white/10">
+                    <h4 class="text-unimma-accent font-bold mb-2">MoU</h4>
+                    <p class="text-xs text-slate-400 leading-relaxed">Pengukuhan kerja sama strategis antara Kampus, Pemda, dan Mahasiswa.</p>
+                </div>
+                <div class="bg-white/5 p-8 rounded-3xl border border-white/10">
+                    <h4 class="text-unimma-accent font-bold mb-2">TALENTA</h4>
+                    <p class="text-xs text-slate-400 leading-relaxed">Instansi merekomendasikan pemuda terbaik untuk mendapatkan pendidikan intensif.</p>
+                </div>
+                <div class="bg-white/5 p-8 rounded-3xl border border-white/10">
+                    <h4 class="text-unimma-accent font-bold mb-2">HASIL</h4>
+                    <p class="text-xs text-slate-400 leading-relaxed">UNIMMA menjamin kualitas teknis dan dedikasi pengabdian penuh untuk daerah.</p>
+                </div>
+            </div>
+
+            <div class="inline-flex flex-col md:flex-row items-center gap-6 bg-white p-6 rounded-[2.5rem] shadow-3xl text-slate-900 w-full md:w-auto">
+                <div class="flex items-center gap-4 px-6 border-b md:border-b-0 md:border-r border-slate-100 py-2 w-full md:w-auto">
+                    <div class="w-10 h-10 bg-unimma-blue rounded-full flex items-center justify-center text-white shrink-0">
+                        <i data-lucide="mail" class="w-5 h-5"></i>
+                    </div>
+                    <div class="text-left">
+                        <span class="block text-[10px] text-slate-400 font-bold uppercase tracking-widest leading-none mb-1">Korespondensi</span>
+                        <a href="mailto:bepe@unimma.ac.id" class="font-bold hover:text-unimma-accent transition-colors">bepe@unimma.ac.id</a>
+                    </div>
+                </div>
+                <div class="flex items-center gap-4 px-6 py-2 w-full md:w-auto">
+                    <div class="w-10 h-10 bg-green-500 rounded-full flex items-center justify-center text-white shrink-0">
+                        <i data-lucide="phone" class="w-5 h-5"></i>
+                    </div>
+                    <div class="text-left">
+                        <span class="block text-[10px] text-slate-400 font-bold uppercase tracking-widest leading-none mb-1">Hubungi Kami</span>
+                        <a href="https://wa.me/6282219653322" class="font-bold hover:text-unimma-accent transition-colors">0822 1965 3322</a>
+                    </div>
+                </div>
+                <a href="https://wa.me/6282219653322" target="_blank" class="bg-unimma-accent hover:bg-yellow-500 text-white px-10 py-4 rounded-full font-black uppercase tracking-widest text-sm transition-all shadow-xl w-full md:w-auto text-center">
+                    GABUNG SEKARANG
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-slate-500 py-12 text-center text-xs border-t border-white/5">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex flex-col items-center gap-4 mb-6">
+                <div class="flex items-center gap-3 grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all cursor-pointer">
+                    <img src="https://lh3.googleusercontent.com/d/1oVQNT3iWSVCw9YOjMqNgYiXXzUoNCRck" alt="Logo UNIMMA" class="h-8 w-auto">
+                    <img src="https://lh3.googleusercontent.com/d/1zzEmoTmvTPSDHDCe7HU96TPfsZK2Bjqd" alt="Logo D3 TI" class="h-8 w-auto">
+                </div>
+            </div>
+            <p class="font-semibold text-slate-400">&copy; 2026 PROGRAM DIGDAYA - UNIVERSITAS MUHAMMADIYAH MAGELANG</p>
+            <p class="mt-1 tracking-widest uppercase">Membangun Kedaulatan Digital Kabupaten Magelang</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        lucide.createIcons();
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 20) {
+                navbar.classList.add('shadow-md');
+                navbar.classList.replace('bg-white/95', 'bg-white/100');
+            } else {
+                navbar.classList.remove('shadow-md');
+                navbar.classList.replace('bg-white/100', 'bg-white/95');
+            }
+        });
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('appear');
+            });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.fade-in').forEach((elem) => observer.observe(elem));
+    </script>
+</body>
+</html>
