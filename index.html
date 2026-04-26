@@ -135,9 +135,10 @@
         <div id="home" class="page-section">
             
             <!-- Hero Section (Bagian Paling Atas dengan Latar Gambar) -->
-            <section class="min-h-[85vh] flex items-center py-20 lg:py-0 relative overflow-hidden bg-cover bg-top bg-no-repeat" style="background-image: url('https://lh3.googleusercontent.com/d/1K2psq_sXJSGa0_WftCIXle96HeKWjL36');">
+            <!-- Disesuaikan dengan bg-contain agar tidak terpotong, disisipkan warna fallback bg-[#002855] -->
+            <section class="min-h-[85vh] flex items-center py-20 lg:py-0 relative overflow-hidden bg-contain bg-center bg-no-repeat bg-[#002855]" style="background-image: url('https://lh3.googleusercontent.com/d/1I355jlGCvSk8cV1T1kC__EIrU-lPdnzS');">
                 <!-- Overlay gradasi warna biru gelap untuk memastikan teks terbaca -->
-                <div class="absolute inset-0 bg-gradient-to-br from-[#003B73]/95 via-[#003B73]/65 to-[#002855]/95 z-0 backdrop-blur-[2px]"></div>
+                <div class="absolute inset-0 bg-gradient-to-br from-[#003B73]/95 via-[#003B73]/50 to-[#002855]/95 z-0 backdrop-blur-[1px]"></div>
 
                 <!-- Konten Teks Hero -->
                 <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full text-center mt-10">
@@ -259,8 +260,8 @@
                                     Detail Akademik <i data-lucide="arrow-right-circle" class="w-5 h-5"></i>
                                 </button>
                             </div>
-                            <!-- Sisi kanan berupa gambar cover -->
-                            <div class="bg-[url('https://lh3.googleusercontent.com/d/1zcDm15WUT0A-XvgKVgWQ-HMVqZPpxVPn')] bg-cover bg-center min-h-[300px] lg:min-h-full">
+                            <!-- Sisi kanan berupa gambar cover (Disesuaikan agar tidak terpotong) -->
+                            <div class="bg-[url('https://lh3.googleusercontent.com/d/1zcDm15WUT0A-XvgKVgWQ-HMVqZPpxVPn')] bg-contain bg-center bg-no-repeat bg-[#002855] min-h-[300px] lg:min-h-full">
                             </div>
                         </div>
                     </div>
@@ -512,30 +513,23 @@
                 </div>
 
                 <div class="grid md:grid-cols-2 gap-8">
-                    <!-- Kartu Karya 1: Metaverse Borobudur -->
+                    <!-- Kartu Karya 1: Metaverse Borobudur (Dialihkan ke Thumbnail karena Error Embed 153) -->
                     <div class="bg-white rounded-3xl overflow-hidden shadow-xl border border-slate-100 group flex flex-col hover:shadow-2xl transition-shadow duration-300">
-                        
-                        <!-- Simulasi Frame Browser (Iframe) untuk menampilkan web secara langsung -->
-                        <div class="relative w-full h-72 bg-slate-200 overflow-hidden group border-b border-slate-100">
-                            <!-- Topbar ala Browser Mac -->
-                            <div class="h-7 bg-slate-800 flex items-center px-3 gap-2 absolute top-0 w-full z-20 shadow-md">
-                                <div class="flex gap-1.5">
-                                    <div class="w-2.5 h-2.5 rounded-full bg-red-500"></div>
-                                    <div class="w-2.5 h-2.5 rounded-full bg-yellow-500"></div>
-                                    <div class="w-2.5 h-2.5 rounded-full bg-green-500"></div>
-                                </div>
-                                <div class="ml-2 bg-slate-700/80 rounded flex-1 max-w-[70%] h-4 flex items-center px-2">
-                                    <span class="text-[9px] text-slate-300 font-mono truncate">suaramerdeka.com/digitalisasi-pariwisata</span>
+                        <div class="relative w-full h-72 bg-slate-900 overflow-hidden group border-b border-slate-100">
+                            <!-- Thumbnail YouTube Otomatis dari ID Video -->
+                            <img src="https://img.youtube.com/vi/CIefGZDFL08/hqdefault.jpg" alt="Thumbnail Metaverse" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-70" />
+                            
+                            <!-- Ikon Play YouTube Palsu di Tengah -->
+                            <div class="absolute inset-0 flex items-center justify-center pointer-events-none z-20">
+                                <div class="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="white" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-1"><polygon points="5 3 19 12 5 21 5 3"/></svg>
                                 </div>
                             </div>
-                            <!-- Konten Iframe Web Asli -->
-                            <div class="absolute top-7 left-0 right-0 bottom-0 bg-slate-100 z-10 overflow-hidden">
-                                <iframe src="https://kedu.suaramerdeka.com/kedu/2112558054/digitalisasi-pariwisata-tim-dosen-unimma-luncurkan-meetmaya" title="Berita Metaverse" loading="lazy" scrolling="no" class="w-full h-full border-none pointer-events-none bg-white"></iframe>
-                            </div>
-                            <!-- Overlay interaktif: Muncul saat dihover untuk mencegah user terjebak scroll di dalam iframe -->
+
+                            <!-- Overlay Interaktif: Muncul saat dihover -->
                             <div class="absolute inset-0 bg-[#003B73]/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-30 flex items-center justify-center backdrop-blur-[2px]">
-                                <a href="https://kedu.suaramerdeka.com/kedu/2112558054/digitalisasi-pariwisata-tim-dosen-unimma-luncurkan-meetmaya" target="_blank" rel="noreferrer" class="bg-[#F2A900] text-[#003B73] px-6 py-2.5 rounded-full font-bold text-sm flex items-center gap-2 transform translate-y-4 group-hover:translate-y-0 transition-all duration-300 shadow-xl">
-                                    <i data-lucide="external-link" class="w-4 h-4"></i> Kunjungi Situs
+                                <a href="https://youtu.be/CIefGZDFL08?si=acbZqmSvn7grCwSw" target="_blank" rel="noreferrer" class="bg-red-600 text-white px-6 py-2.5 rounded-full font-bold text-sm flex items-center gap-2 transform translate-y-4 group-hover:translate-y-0 transition-all duration-300 shadow-xl hover:bg-red-700">
+                                    <i data-lucide="external-link" class="w-4 h-4"></i> Tonton di YouTube
                                 </a>
                             </div>
                         </div>
@@ -553,10 +547,10 @@
                         </div>
                     </div>
 
-                    <!-- Kartu Karya 2: Website Desa -->
+                    <!-- Kartu Karya 2: Website Desa Kenayan (Tampilan Gambar Pratinjau) -->
                     <div class="bg-white rounded-3xl overflow-hidden shadow-xl border border-slate-100 group flex flex-col hover:shadow-2xl transition-shadow duration-300">
                         
-                        <!-- Simulasi Frame Browser (Iframe) -->
+                        <!-- Simulasi Frame Browser dengan Gambar Web Kenayan -->
                         <div class="relative w-full h-72 bg-slate-200 overflow-hidden group border-b border-slate-100">
                             <div class="h-7 bg-slate-800 flex items-center px-3 gap-2 absolute top-0 w-full z-20 shadow-md">
                                 <div class="flex gap-1.5">
@@ -568,9 +562,11 @@
                                     <span class="text-[9px] text-slate-300 font-mono truncate">kenayan.com</span>
                                 </div>
                             </div>
+                            <!-- Konten Gambar Statis -->
                             <div class="absolute top-7 left-0 right-0 bottom-0 bg-slate-100 z-10 overflow-hidden">
-                                <iframe src="https://kenayan.com" title="Website Desa Kenayan" loading="lazy" scrolling="no" class="w-full h-full border-none pointer-events-none bg-white"></iframe>
+                                <img src="https://lh3.googleusercontent.com/d/1YpPVjSVZmOWqQfYo_KMDuQyo8CTAk1VH" alt="Website Desa Kenayan" class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500" />
                             </div>
+                            <!-- Overlay Interaktif: Muncul saat dihover untuk mengunjungi situs asli -->
                             <div class="absolute inset-0 bg-[#003B73]/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-30 flex items-center justify-center backdrop-blur-[2px]">
                                 <a href="https://kenayan.com" target="_blank" rel="noreferrer" class="bg-[#F2A900] text-[#003B73] px-6 py-2.5 rounded-full font-bold text-sm flex items-center gap-2 transform translate-y-4 group-hover:translate-y-0 transition-all duration-300 shadow-xl">
                                     <i data-lucide="external-link" class="w-4 h-4"></i> Kunjungi Situs
